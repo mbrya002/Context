@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "345923438792",
+    "firebase_url": "https://context-bcf1e.firebaseio.com",
+    "project_id": "context-bcf1e",
+    "storage_bucket": "context-bcf1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345923438792:android:d2e0cfe92d28fc69",
+        "android_client_info": {
+          "package_name": "apps.matts.contextlearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345923438792-tif92gsvsh3mmd0432if054v0fnbgs4p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "apps.matts.contextlearning",
+            "certificate_hash": "c97e2e3b216c59fb129f7083302fd8063fe60c6e"
+          }
+        },
+        {
+          "client_id": "345923438792-6u56da9isnrhl9edq6d81iv3mhqsqpcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8m9L0RpbdcnGS-m8bCuEbYlV1ToVYgs8"
+        },
+        {
+          "current_key": "AIzaSyCj3sdgmffSw1AxBXn3KoTB0lkWV4AMFfI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345923438792-6u56da9isnrhl9edq6d81iv3mhqsqpcv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

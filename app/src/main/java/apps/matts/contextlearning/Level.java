@@ -2,6 +2,7 @@ package apps.matts.contextlearning;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -57,35 +58,29 @@ public class Level extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        // Add value event listener to the post
-        // [START post_value_event_listener]
-        ValueEventListener numListen = new ValueEventListener() {
+
+        qinforef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    QuestionInfo q = ds.getValue(QuestionInfo.class);
+                    Log.d("Level", q.getWord());
+                    questions.add(q);
+                }
+
+                showQuestion();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        };
-        qnumref.addValueEventListener(numListen);
+        });
         // [END post_value_event_listener]
 
-        ValueEventListener infoListen = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                showInfo(dataSnapshot);
-            }
+    }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        qinforef.addValueEventListener(infoListen);
-        // [END post_value_event_listener]
+    public void showQuestion() {
         Random r = new Random();
 
         int rq = r.nextInt(questions.size() - 1) + 1;
@@ -93,27 +88,7 @@ public class Level extends AppCompatActivity {
         Picasso.with(this).load(imageUrl).into(img);
         gm.setLevel(questions.get(rq).getWord().toUpperCase());
         updateScreen();
-
     }
-
-    private void showData(DataSnapshot dataSnapshot) {
-
-        for(DataSnapshot ds : dataSnapshot.getChildren()){
-            qnum = ds.getValue(QNum.class);
-        }
-    }
-
-    private void showInfo(DataSnapshot dataSnapshot) {
-
-        for(DataSnapshot ds : dataSnapshot.getChildren()){
-            QuestionInfo q = ds.getValue(QuestionInfo.class);
-            //qinfo.setHint(ds.child(Integer.toString(rq)).getValue(QuestionInfo.class).getHint());
-            //qinfo.setLevel(ds.child(Integer.toString(rq)).getValue(QuestionInfo.class).getLevel());
-            //qinfo.setWord(ds.child(Integer.toString(rq)).getValue(QuestionInfo.class).getWord());
-            questions.add(q);
-        }
-    }
-
 
     public void checkClick(View view)
     {

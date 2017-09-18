@@ -29,12 +29,10 @@ public class Level extends AppCompatActivity {
     DatabaseReference qnumref;
     DatabaseReference qinforef;
     ImageView img;
-    //int numQuestions;
-    //String word = "";
-    //String hint = "";
+    Random r;
     String imageUrl = "";
     QNum qnum = new QNum();
-    //QuestionInfo qinfo = new QuestionInfo();
+
     ArrayList<QuestionInfo> questions = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +40,6 @@ public class Level extends AppCompatActivity {
         setContentView(R.layout.activity_level);
         database = FirebaseDatabase.getInstance().getReference();
 
-        //Random r = new Random();
-        //DatabaseReference countRef = database.child("count");
-        //int randomQuestion = r.nextInt(numQuestions - 1) + 1;
         qnumref = database.child("Count");
 
         qinforef = database.child("Questions");
@@ -81,12 +76,12 @@ public class Level extends AppCompatActivity {
     }
 
     public void showQuestion() {
-        Random r = new Random();
-
-        int rq = r.nextInt(questions.size() - 1) + 1;
+        r = new Random();
+        int rq = r.nextInt(questions.size());
         imageUrl = "http://www.cs.odu.edu/~mbryant/Context/" + questions.get(rq).getWord() + ".png";
         Picasso.with(this).load(imageUrl).into(img);
         gm.setLevel(questions.get(rq).getWord().toUpperCase());
+        enableAllButton();
         updateScreen();
     }
 
@@ -96,6 +91,7 @@ public class Level extends AppCompatActivity {
         {
             Toast.makeText(this, "Congratulations, You did it!",
                     Toast.LENGTH_LONG).show();
+                    showQuestion();
         }
         else
         {
@@ -115,6 +111,14 @@ public class Level extends AppCompatActivity {
             b.setEnabled(true);
         }
         updateText();
+    }
+
+    public void enableAllButton(){
+        while(!disabledButtons.empty())
+        {
+            Button b = disabledButtons.pop();
+            b.setEnabled(true);
+        }
     }
 
     public void letterClick(View view)

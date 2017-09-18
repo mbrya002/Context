@@ -14,7 +14,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import android.support.design.widget.NavigationView;
 import android.widget.Toast;
@@ -33,7 +35,8 @@ import apps.matts.contextlearning.utils.SharedPrefManager;
 // This class is a simple activity with NavigationDrawer
 // we get data stored in sharedPrefference and display on the header view of the NavigationDrawer
 public class NavDrawerActivity extends BaseActivity implements
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener,
+        View.OnClickListener{
 
     Context mContext = this;
 
@@ -43,6 +46,9 @@ public class NavDrawerActivity extends BaseActivity implements
     private TextView mFullNameTextView, mEmailTextView;
     private CircleImageView mProfileImageView;
     private String mUsername, mEmail;
+
+    private Button playButton;
+    private Button settingButton;
 
     SharedPrefManager sharedPrefManager;
     private GoogleApiClient mGoogleApiClient;
@@ -59,6 +65,12 @@ public class NavDrawerActivity extends BaseActivity implements
         initNavigationDrawer();
 
         View header = navigationView.getHeaderView(0);
+
+        playButton = (Button) findViewById(R.id.playButton);
+        playButton.setOnClickListener(this);
+
+        settingButton = (Button) findViewById(R.id.settingsButton);
+        settingButton.setOnClickListener(this);
 
         mFullNameTextView = (TextView) header.findViewById(R.id.fullName);
         mEmailTextView = (TextView) header.findViewById(R.id.email);
@@ -100,26 +112,17 @@ public class NavDrawerActivity extends BaseActivity implements
                 int id = item.getItemId();
 
                 switch (id){
-                    case R.id.freebie:
-                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
+
                     case R.id.payment:
                         Toast.makeText(getApplicationContext(),"Settings",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
                         break;
-                    case R.id.trip:
-                        Toast.makeText(getApplicationContext(),"Trash",Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
+
                     case R.id.logout:
                         signOut();
                         drawerLayout.closeDrawers();
                         break;
-                    case R.id.tips:
-                        Toast.makeText(getApplicationContext(),"Trash",Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
+
                 }
                 return false;
             }
@@ -171,5 +174,15 @@ public class NavDrawerActivity extends BaseActivity implements
                     }
                 }
         );
+    }
+
+    public void onClick(View view) {
+
+        int id = view.getId();
+
+        if (id == R.id.playButton){
+            Intent intent = new Intent(NavDrawerActivity.this, Level.class);
+            startActivity(intent);
+        }
     }
 }

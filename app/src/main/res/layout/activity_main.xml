@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.tutorial.context.MainActivity">
+    tools:context="apps.matts.contextlearning.MainActivity">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/login_with_google"

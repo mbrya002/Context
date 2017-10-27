@@ -17,3 +17,6 @@ Michelle Graham
 
 Noah Young
 
+# Implementations:
+[X] Firebase Database
+[ ] Documentation

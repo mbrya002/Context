@@ -1,5 +1,7 @@
 ![logo](https://github.com/mbrya002/Context/blob/master/logo2.png)
 
+[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/Hearthstonepp/blob/master/LICENSE)
+
 # ConText
 CS411 Senior Project
 
@@ -25,7 +27,9 @@ Noah Young
 
 ## License
 
-The class is licensed under the MIT License:
+<img align="right" src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">
+
+The class is licensed under the [MIT License](http://opensource.org/licenses/MIT):
 
 Copyright © 2017 Robert Plaugher, Matthew Bryant, Robert Marchand, Michelle Graham, Noah Young.
 

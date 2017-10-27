@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Created by Matthew on 4/3/2017.
+   Edited by Robert Plaugher 10/27/2017
  */
 public class gameLevel {
     private String word;
@@ -18,26 +19,46 @@ public class gameLevel {
         guessShown = "";
         guessLetters = new char[8];
     }
-
-    public String getWord()
+    
+    //Getters and setters below AKA Data Hiding
+    public String getWord(String word)
     {
         return word;
     }
-
-    public String getGuess()
+    
+    private void setWord()
+    {
+        this.word = word;
+    }
+    
+    public String getGuess(String guess)
     {
         return guess;
     }
+    
+    private void setGuess()
+    {
+        this.guess = guess;   
+    }
 
-    public String getGuessLetters()
+    public String getGuessLetters(String let)
+    {
+        return let;
+    }
+    
+    private String setGuessLetters()
     {
         String let = String.copyValueOf(guessLetters);
-        return let;
     }
 
     public char[] getGuessLettersChar()
     {
         return guessLetters;
+    }
+    
+    private char[] setGuessLettersChar()
+    {
+        ;
     }
 
     public String getGuessShown()

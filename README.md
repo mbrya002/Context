@@ -1,6 +1,6 @@
 ![logo](https://github.com/mbrya002/Context/blob/master/logo2.png)
 
-[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/Hearthstonepp/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/mbrya002/Context/blob/master/LICENSE)
 
 # ConText
 CS411 Senior Project

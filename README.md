@@ -5,8 +5,7 @@
 # ConText
 CS411 Senior Project
 
-ConText is a mobile application developed in AndroidStudios that facilitates learning for ESL Students through the use of
-visual puns, American humor, and through linear gameplay. 
+Team Flirt is creating a mobile application for Android phones to assist English as a Second Language (ESL) Students learn common difficult words. Our android-specific application that will achieve this is called ConText. ConText is a mobile application developed in Android Studios that facilitates learning for ESL Students through the use of visual puns, American humor, and through linear gameplay.
 
 # Team Members:
 Robert Plaugher

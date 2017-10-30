@@ -27,6 +27,10 @@ http://www.cs.odu.edu/~411flirt/
 
 [ ] Documentation
 
+[ ] Update GUI Display for ConText App
+
+[ ] Upload Audio Files/Sound Effects
+
 
 ## License
 

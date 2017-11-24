@@ -39,7 +39,7 @@ Robert Marchand: rmarc001@odu.edu
 
 Matthew Bryant: mbrya002@odu.edu
 
-Noah Young: nyoun@odu.edu
+Noah Young: nyoun009@odu.edu
 
 
 ## License

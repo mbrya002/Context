@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stage_select_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/difficulty_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        tools:text="Beginner" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_weight="0" />
+
+    <TextView
+        android:id="@+id/stage_select_text"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="0"
+        android:textSize="20sp"
+        android:text="Select Stage" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_weight="0" />
+
+    <LinearLayout
+        android:id="@+id/layout_top_stage_buttons"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/lvl1"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="1"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+        <Button
+            android:id="@+id/lvl2"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="2"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+
+        <Button
+            android:id="@+id/lvl3"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="3"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+        </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_weight="0" />
+
+    <LinearLayout
+        android:id="@+id/layout_middle_stage_buttons"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/lvl4"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="4"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+        <Button
+            android:id="@+id/lvl5"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="5"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+
+        <Button
+            android:id="@+id/lvl6"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="6"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_weight="0" />
+
+    <LinearLayout
+        android:id="@+id/layout_bottom_stage_buttons"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/lvl7"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="7"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+        <Button
+            android:id="@+id/lvl8"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="8"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+
+        <Button
+            android:id="@+id/lvl9"
+            style="@style/Widget.AppCompat.Button.Small"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="9"
+            android:textColor="@color/blue"
+            android:onClick="stageClick"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

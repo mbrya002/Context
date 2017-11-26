@@ -21,13 +21,22 @@
         </activity>
         <activity android:name="apps.matts.contextlearning.BaseActivity"></activity>
         <activity
-            android:name="Level"
+            android:name="StageSelect"
             android:label=""
             android:parentActivityName=".NavDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="apps.matts.contextlearning.NavDrawerActivity" />
+        </activity>
+        <activity
+            android:name="Level"
+            android:label=""
+            android:parentActivityName=".StageSelect"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="apps.matts.contextlearning.StageSelect" />
         </activity>
     </application>
 

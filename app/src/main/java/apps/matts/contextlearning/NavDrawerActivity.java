@@ -5,15 +5,20 @@ package apps.matts.contextlearning;
  */
 
 import android.content.Context;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -181,8 +186,62 @@ public class NavDrawerActivity extends BaseActivity implements
         int id = view.getId();
 
         if (id == R.id.playButton){
-            Intent intent = new Intent(NavDrawerActivity.this, Level.class);
-            startActivity(intent);
+            //Intent intent = new Intent(NavDrawerActivity.this, Level.class);
+            //startActivity(intent);
+            new MyAlertDialogFragment().show(getSupportFragmentManager(), "stuff");
         }
+    }
+
+    public static class MyAlertDialogFragment extends DialogFragment {
+
+        TextView title;
+        Button beginnerBtn;
+        Button advancedBtn;
+        Button expertBtn;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View v = inflater.inflate(R.layout.dialog_level_select, container, false);
+
+            title = (TextView) v.findViewById(R.id.cool_levelSelect);
+            beginnerBtn = (Button) v.findViewById(R.id.beginner_button);
+            advancedBtn = (Button) v.findViewById(R.id.advanced_button);
+            expertBtn = (Button) v.findViewById(R.id.expert_button);
+            return v;
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            beginnerBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), StageSelect.class);
+                    intent.putExtra("Difficulty", 0);
+                    startActivity(intent);
+                }
+            });
+            advancedBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), StageSelect.class);
+                    intent.putExtra("Difficulty", 1);
+                    startActivity(intent);
+                }
+            });
+            expertBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), StageSelect.class);
+                    intent.putExtra("Difficulty", 2);
+                    startActivity(intent);
+                }
+            });
+
+        }
+
+
+
+
     }
 }

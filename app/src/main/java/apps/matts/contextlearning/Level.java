@@ -9,33 +9,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
-
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-
-
-
-
 import com.google.firebase.storage.StorageReference;
 
-
-
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Stack;
 
-public class Level extends AppCompatActivity {
+public class Level extends AppCompatActivity implements MyAlertDialogFragment2.QuestionInterface {
 
     gameLevel gm;
+    int rq;
+    static String hint;
+    static String msgString;
     private DatabaseReference database;
     private FirebaseStorage storage;
     Stack<Button> disabledButtons;
@@ -53,6 +46,7 @@ public class Level extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
+        rq = -1;
         database = FirebaseDatabase.getInstance().getReference();
         storage = FirebaseStorage.getInstance();
         //Random r = new Random();
@@ -61,7 +55,7 @@ public class Level extends AppCompatActivity {
         qnumref = database.child("Count");
 
         qinforef = database.child("Questions");
-
+        rq = getIntent().getIntExtra("stage", 1) - 1;
         img = (ImageView)findViewById(R.id.Pic) ;
         disabledButtons = new Stack<Button>();
         gm = new gameLevel();
@@ -94,9 +88,6 @@ public class Level extends AppCompatActivity {
     }
 
     public void showQuestion() {
-        Random r = new Random();
-
-        int rq = r.nextInt(questions.size() - 1) + 1;
         StorageReference storageRef = storage.getReferenceFromUrl("gs://context-bcf1e.appspot.com/").child("Pics/" + questions.get(rq).getWord() + ".png");
 
         Glide.with(this /* context */)
@@ -105,22 +96,31 @@ public class Level extends AppCompatActivity {
                 .into(img);
 
         gm.setLevel(questions.get(rq).getWord().toUpperCase());
+        hint = questions.get(rq).getHint();
         enableAllButton();
         updateScreen();
     }
 
+    public void nextquestion ()
+    {
+        rq++;
+        showQuestion();
+    }
+
     public void checkClick(View view)
     {
+
         if(gm.makeGuess())
         {
-            Toast.makeText(this, "Congratulations, You did it!",
-                    Toast.LENGTH_LONG).show();
-            showQuestion();
+            msgString = "Congratulations, You did it!";
+            MyAlertDialogFragment2 dialog = new MyAlertDialogFragment2();
+            dialog.show(getSupportFragmentManager(), "stuff");
+
         }
         else
         {
-            Toast.makeText(this, "Sorry, try agian",
-                    Toast.LENGTH_LONG).show();
+            msgString = "Sorry, try again";
+            new MyAlertDialogFragment2().show(getSupportFragmentManager(), "stuff");
         }
     }
 
@@ -195,6 +195,10 @@ public class Level extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override public void loadNextQuestion() {
+        nextquestion();
     }
 
 }

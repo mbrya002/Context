@@ -6,7 +6,12 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:background="@drawable/blank2"
 tools:context="apps.matts.contextlearning.SettingScreen">
+
+    <Space
+        android:layout_width="80dp"
+        android:layout_height="200dp"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -14,36 +19,65 @@ tools:context="apps.matts.contextlearning.SettingScreen">
         android:orientation="horizontal">
 
         <Space
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
+            android:layout_width="80dp"
+            android:layout_height="10dp" />
+
 
         <TextView
             android:id="@+id/soundEnableText"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Sound:"
+
+            android:textColor="#ad0066"
+            android:textStyle="bold"
             android:layout_marginTop="5dp"
             android:textSize="36sp" />
 
         <Button
             android:id="@+id/soundToggle"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:textColor="#ad0066"
+            android:textStyle="bold"
+            android:textSize="25dp"
             android:text="On"
+            android:background="@drawable/longbtn"
             android:onClick="soundClick"/>
 
     </LinearLayout>
 
+    <Space
+        android:layout_width="80dp"
+        android:layout_height="10dp" />
+
     <Button
         android:id="@+id/resetProgressbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reset Progress" />
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/longbtn"
+        android:textColor="#ad0066"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:text="Reset" />
+
+    <Space
+        android:layout_width="80dp"
+        android:layout_height="15dp" />
 
     <Button
         android:id="@+id/logoffbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/longbtn"
+        android:gravity="center"
+        android:textColor="#ad0066"
+        android:textStyle="bold"
+        android:textSize="25dp"
         android:text="Log Out" />
 
 

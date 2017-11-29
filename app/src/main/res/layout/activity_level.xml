@@ -6,13 +6,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/level2"
         tools:context="apps.matts.contextlearning.Level"
         >
 
     <LinearLayout
         android:id="@+id/layout_spacerhead"
         android:layout_width="208dp"
-        android:layout_height="45dp"
+        android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"></LinearLayout>
 
@@ -34,7 +35,7 @@
     <LinearLayout
         android:id="@+id/layout_spacer2"
         android:layout_width="208dp"
-        android:layout_height="45dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"></LinearLayout>
 
@@ -94,7 +95,7 @@
     <LinearLayout
         android:id="@+id/layout_spacer"
         android:layout_width="208dp"
-        android:layout_height="45dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"></LinearLayout>
 

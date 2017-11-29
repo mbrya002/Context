@@ -47,8 +47,6 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
     Context mContext = this;
     boolean isCorrect;
     ImageView img;
-    String imageUrl = "";
-    QNum qnum = new QNum();
     int userLevel;
 
     ArrayList<QuestionInfo> questions = new ArrayList<>();

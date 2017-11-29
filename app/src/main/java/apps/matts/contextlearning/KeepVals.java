@@ -9,6 +9,7 @@ import android.app.Application;
 public class KeepVals extends Application {
 
     private boolean mGlobalSoundVar = true;
+    private int mGlobalUserLevelVar = 1;
 
 
 

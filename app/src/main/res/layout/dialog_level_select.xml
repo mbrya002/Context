@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="275dp"
-    android:background="@drawable/blank2">
+    android:layout_height="300dp"
+    android:background="#ffbae3">
 
 
     <TextView
         android:id="@+id/cool_levelSelect"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_weight="0"
         android:text="Select Difficulty"
         android:textAlignment="center"
-        android:textSize="40sp"
+        android:textSize="30sp"
+        tools:text="Select Level"
         android:textColor="#ad0066"
-        android:textStyle="bold"
-        tools:text="Select Level" />
+        android:textStyle="bold"/>
 
     <Space
         android:layout_width="10dp"
@@ -73,4 +74,9 @@
         android:textStyle="bold"
         android:textSize="20dp"
         android:text="Expert" />
+
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:layout_weight="0" />
 </LinearLayout>

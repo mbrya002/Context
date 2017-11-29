@@ -1,5 +1,6 @@
 package apps.matts.contextlearning;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,11 +9,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import apps.matts.contextlearning.utils.SharedPrefManager;
+
 public class SettingScreen extends AppCompatActivity {
 
     Boolean soundEnabled;
     Button soundbtn;
     KeepVals mApp;
+    private DatabaseReference database;
+    SharedPrefManager sharedPrefManager;
+    private String mEmail;
+    Context mContext = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +31,10 @@ public class SettingScreen extends AppCompatActivity {
         mApp = ((KeepVals)getApplicationContext());
         soundEnabled = mApp.getGlobalSoundValue();
         soundbtn = (Button) findViewById(R.id.soundToggle);
+        database = FirebaseDatabase.getInstance().getReference();
+        sharedPrefManager = new SharedPrefManager(mContext);
 
+        mEmail = sharedPrefManager.getUserEmail().replace(".", ",");
     }
 
     @Override
@@ -50,6 +63,11 @@ public class SettingScreen extends AppCompatActivity {
         {
             soundbtn.setText("Off");
         }
+    }
+
+    public void resetClick(View view)
+    {
+        database.child("users").child(mEmail).child("level").setValue(1);
     }
 
 }

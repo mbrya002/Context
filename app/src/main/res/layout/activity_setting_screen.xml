@@ -38,7 +38,8 @@ tools:context="apps.matts.contextlearning.SettingScreen">
         android:id="@+id/resetProgressbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reset Progress" />
+        android:text="Reset Progress"
+        android:onClick="resetClick"/>
 
     <Button
         android:id="@+id/logoffbtn"

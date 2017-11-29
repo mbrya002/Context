@@ -37,6 +37,7 @@ public class User {
     }
     public int getLevel() { return level;  }
     public void increaseLevel() { level++; }
+    public void resetLevel() {level=1;}
 
     public String getPhoto() {
         return photo;

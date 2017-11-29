@@ -1,6 +1,7 @@
 package apps.matts.contextlearning;
 
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,10 +25,14 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import apps.matts.contextlearning.model.User;
+import apps.matts.contextlearning.utils.SharedPrefManager;
+
 public class Level extends AppCompatActivity implements MyAlertDialogFragment2.QuestionInterface {
 
     gameLevel gm;
     int rq;
+    int uLev;
     static String hint;
     static String msgString;
     private DatabaseReference database;
@@ -39,8 +44,12 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
     Stack<Button> disabledButtons;
     DatabaseReference qnumref;
     DatabaseReference qinforef;
+    DatabaseReference ulevref;
     boolean isCorrect;
     ImageView img;
+    SharedPrefManager sharedPrefManager;
+    private String mEmail;
+    Context mContext = this;
     //int numQuestions;
     //String word = "";
     //String hint = "";
@@ -57,6 +66,7 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
         mApp = ((KeepVals)getApplicationContext());
         soundEnabled = mApp.getGlobalSoundValue();
         rq = -1;
+        uLev = -1;
         database = FirebaseDatabase.getInstance().getReference();
         storage = FirebaseStorage.getInstance();
         //Random r = new Random();
@@ -69,6 +79,11 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
         img = (ImageView)findViewById(R.id.Pic) ;
         disabledButtons = new Stack<Button>();
         gm = new gameLevel();
+
+        database = FirebaseDatabase.getInstance().getReference();
+        sharedPrefManager = new SharedPrefManager(mContext);
+
+        mEmail = sharedPrefManager.getUserEmail().replace(".", ",");
     }
 
     @Override
@@ -91,6 +106,19 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
 
             }
         });
+/*
+        ulevref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User u = dataSnapshot.getValue(User.class);
+                uLev = u.getLevel();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
         // [END post_value_event_listener]
 
     }
@@ -128,6 +156,12 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
             {
                 mpC.start();
             }
+
+           if(uLev <= rq)
+           {
+                database.child("users").child(mEmail).child("level").setValue(rq);
+           }
+
             msgString = "Congratulations, You did it!";
             MyAlertDialogFragment2 dialog = new MyAlertDialogFragment2();
             dialog.show(getSupportFragmentManager(), "stuff");

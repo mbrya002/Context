@@ -190,6 +190,10 @@ public class NavDrawerActivity extends BaseActivity implements
             //startActivity(intent);
             new MyAlertDialogFragment().show(getSupportFragmentManager(), "stuff");
         }
+        if (id == R.id.settingsButton){
+            Intent intent = new Intent(this, SettingScreen.class);
+            startActivity(intent);
+        }
     }
 
     public static class MyAlertDialogFragment extends DialogFragment {
@@ -219,6 +223,7 @@ public class NavDrawerActivity extends BaseActivity implements
                     Intent intent = new Intent(getActivity(), StageSelect.class);
                     intent.putExtra("Difficulty", 0);
                     startActivity(intent);
+                    dismiss();
                 }
             });
             advancedBtn.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +232,7 @@ public class NavDrawerActivity extends BaseActivity implements
                     Intent intent = new Intent(getActivity(), StageSelect.class);
                     intent.putExtra("Difficulty", 1);
                     startActivity(intent);
+                    dismiss();
                 }
             });
             expertBtn.setOnClickListener(new View.OnClickListener() {
@@ -235,6 +241,7 @@ public class NavDrawerActivity extends BaseActivity implements
                     Intent intent = new Intent(getActivity(), StageSelect.class);
                     intent.putExtra("Difficulty", 2);
                     startActivity(intent);
+                    dismiss();
                 }
             });
 

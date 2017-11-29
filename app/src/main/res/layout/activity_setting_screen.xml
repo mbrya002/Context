@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:screenOrientation="portrait"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="apps.matts.contextlearning.SettingScreen">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/soundEnableText"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Sound:"
+            android:layout_marginTop="5dp"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/soundToggle"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="On"
+            android:onClick="soundClick"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/resetProgressbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset Progress" />
+
+    <Button
+        android:id="@+id/logoffbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out" />
+
+
+
+
+
+</LinearLayout>

@@ -23,7 +23,7 @@ public class MyAlertDialogFragment2 extends DialogFragment {
 
         QuestionInterface callback;
         TextView msg;
-        Button hintBtn;
+        //Button hintBtn;
         Button levelsbtn;
         Button nextbtn;
 
@@ -38,10 +38,11 @@ public class MyAlertDialogFragment2 extends DialogFragment {
             View v = inflater.inflate(R.layout.feed_back_dialog, container, false);
 
             msg = (TextView) v.findViewById(R.id.message);
-            hintBtn = (Button) v.findViewById(R.id.hint);
+            //hintBtn = (Button) v.findViewById(R.id.hint);
             levelsbtn = (Button) v.findViewById(R.id.Levels);
             nextbtn = (Button) v.findViewById(R.id.Next);
             msg.setText(msgString);
+
             return v;
         }
 
@@ -49,6 +50,7 @@ public class MyAlertDialogFragment2 extends DialogFragment {
         @Override
         public void onStart() {
             super.onStart();
+            /*
             hintBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -57,6 +59,7 @@ public class MyAlertDialogFragment2 extends DialogFragment {
                     dismiss();
                 }
             });
+            */
             levelsbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

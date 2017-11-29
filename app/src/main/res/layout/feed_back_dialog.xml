@@ -23,18 +23,10 @@
         android:orientation="horizontal">
 
         <Space
-            android:layout_width="30dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="0" />
 
-    <Button
-        android:id="@+id/hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Hint"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/button"/>
 
         <Space
             android:layout_width="10dp"

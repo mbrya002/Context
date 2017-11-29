@@ -1,6 +1,7 @@
 package apps.matts.contextlearning;
 
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,10 +31,15 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
     static String hint;
     static String msgString;
     private DatabaseReference database;
+    MediaPlayer mpC;
+    MediaPlayer mpNC;
+    KeepVals mApp;
+    Boolean soundEnabled;
     private FirebaseStorage storage;
     Stack<Button> disabledButtons;
     DatabaseReference qnumref;
     DatabaseReference qinforef;
+    boolean isCorrect;
     ImageView img;
     //int numQuestions;
     //String word = "";
@@ -46,6 +52,10 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
+        mpC = MediaPlayer.create(this, R.raw.correct);
+        mpNC = MediaPlayer.create(this, R.raw.incorrect);
+        mApp = ((KeepVals)getApplicationContext());
+        soundEnabled = mApp.getGlobalSoundValue();
         rq = -1;
         database = FirebaseDatabase.getInstance().getReference();
         storage = FirebaseStorage.getInstance();
@@ -53,7 +63,7 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
         //DatabaseReference countRef = database.child("count");
         //int randomQuestion = r.nextInt(numQuestions - 1) + 1;
         qnumref = database.child("Count");
-
+        isCorrect = false;
         qinforef = database.child("Questions");
         rq = getIntent().getIntExtra("stage", 1) - 1;
         img = (ImageView)findViewById(R.id.Pic) ;
@@ -88,6 +98,7 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
     }
 
     public void showQuestion() {
+        isCorrect = false;
         StorageReference storageRef = storage.getReferenceFromUrl("gs://context-bcf1e.appspot.com/").child("Pics/" + questions.get(rq).getWord() + ".png");
 
         Glide.with(this /* context */)
@@ -103,7 +114,9 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
 
     public void nextquestion ()
     {
-        rq++;
+        if ( rq < 8 ) {
+            rq++;
+        }
         showQuestion();
     }
 
@@ -112,15 +125,31 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
 
         if(gm.makeGuess())
         {
+            isCorrect = true;
+            if(soundEnabled)
+            {
+                mpC.start();
+            }
             msgString = "Congratulations, You did it!";
             MyAlertDialogFragment2 dialog = new MyAlertDialogFragment2();
             dialog.show(getSupportFragmentManager(), "stuff");
 
+
+
+
         }
         else
         {
+            isCorrect = false;
+            if(soundEnabled)
+            {
+                mpNC.start();
+            }
             msgString = "Sorry, try again";
-            new MyAlertDialogFragment2().show(getSupportFragmentManager(), "stuff");
+            IncorrectAlertDialog dialog = new IncorrectAlertDialog();
+            dialog.show(getSupportFragmentManager(), "stuff");
+
+
         }
     }
 

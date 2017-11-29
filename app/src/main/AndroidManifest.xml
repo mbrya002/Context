@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="apps.matts.contextlearning">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".KeepVals"
         android:allowBackup="true"
         android:icon="@drawable/contextwithstripes"
         android:label="ConText"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="apps.matts.contextlearning.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="apps.matts.contextlearning.NavDrawerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name="apps.matts.contextlearning.BaseActivity"></activity>
         <activity
-            android:name="StageSelect"
+            android:name=".NavDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".BaseActivity" />
+        <activity
+            android:name=".StageSelect"
             android:label=""
             android:parentActivityName=".NavDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -30,7 +32,7 @@
                 android:value="apps.matts.contextlearning.NavDrawerActivity" />
         </activity>
         <activity
-            android:name="Level"
+            android:name=".Level"
             android:label=""
             android:parentActivityName=".StageSelect"
             android:theme="@style/AppTheme.NoActionBar">
@@ -38,6 +40,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="apps.matts.contextlearning.StageSelect" />
         </activity>
+        <activity
+            android:name=".SettingScreen"
+            android:label="@string/title_activity_setting_screen"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,7 +31,6 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
 
     gameLevel gm;
     int rq;
-    int uLev;
     static String hint;
     static String msgString;
     private DatabaseReference database;
@@ -44,18 +42,15 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
     Stack<Button> disabledButtons;
     DatabaseReference qnumref;
     DatabaseReference qinforef;
-    DatabaseReference ulevref;
-    boolean isCorrect;
-    ImageView img;
     SharedPrefManager sharedPrefManager;
     private String mEmail;
     Context mContext = this;
-    //int numQuestions;
-    //String word = "";
-    //String hint = "";
+    boolean isCorrect;
+    ImageView img;
     String imageUrl = "";
     QNum qnum = new QNum();
-    //QuestionInfo qinfo = new QuestionInfo();
+    int userLevel;
+
     ArrayList<QuestionInfo> questions = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,24 +61,17 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
         mApp = ((KeepVals)getApplicationContext());
         soundEnabled = mApp.getGlobalSoundValue();
         rq = -1;
-        uLev = -1;
         database = FirebaseDatabase.getInstance().getReference();
         storage = FirebaseStorage.getInstance();
-        //Random r = new Random();
-        //DatabaseReference countRef = database.child("count");
-        //int randomQuestion = r.nextInt(numQuestions - 1) + 1;
-        qnumref = database.child("Count");
+        sharedPrefManager = new SharedPrefManager(mContext);
+        mEmail = sharedPrefManager.getUserEmail().replace(".", ",");
+        qnumref = database.child("users").child(mEmail);
         isCorrect = false;
         qinforef = database.child("Questions");
         rq = getIntent().getIntExtra("stage", 1) - 1;
         img = (ImageView)findViewById(R.id.Pic) ;
         disabledButtons = new Stack<Button>();
         gm = new gameLevel();
-
-        database = FirebaseDatabase.getInstance().getReference();
-        sharedPrefManager = new SharedPrefManager(mContext);
-
-        mEmail = sharedPrefManager.getUserEmail().replace(".", ",");
     }
 
     @Override
@@ -101,25 +89,27 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
                 showQuestion();
             }
 
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-/*
-        ulevref.addValueEventListener(new ValueEventListener() {
+
+        qnumref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User u = dataSnapshot.getValue(User.class);
-                uLev = u.getLevel();
+
+                    User q = dataSnapshot.getValue(User.class);
+                    userLevel = q.getLevel();
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
-        // [END post_value_event_listener]
+        });
 
     }
 
@@ -152,16 +142,14 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
         if(gm.makeGuess())
         {
             isCorrect = true;
+            if((userLevel <= (rq + 1)) && (rq < 8))
+            {
+                qnumref.child("level").setValue(rq + 2);
+            }
             if(soundEnabled)
             {
                 mpC.start();
             }
-
-           if(uLev <= rq)
-           {
-                database.child("users").child(mEmail).child("level").setValue(rq);
-           }
-
             msgString = "Congratulations, You did it!";
             MyAlertDialogFragment2 dialog = new MyAlertDialogFragment2();
             dialog.show(getSupportFragmentManager(), "stuff");

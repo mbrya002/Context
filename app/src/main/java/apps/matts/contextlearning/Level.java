@@ -81,10 +81,8 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     QuestionInfo q = ds.getValue(QuestionInfo.class);
-                    Log.d("Level", q.getWord());
                     questions.add(q);
                 }
-
                 showQuestion();
             }
 

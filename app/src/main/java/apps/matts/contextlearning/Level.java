@@ -1,10 +1,10 @@
 package apps.matts.contextlearning;
 
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,6 +24,9 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import apps.matts.contextlearning.model.User;
+import apps.matts.contextlearning.utils.SharedPrefManager;
+
 public class Level extends AppCompatActivity implements MyAlertDialogFragment2.QuestionInterface {
 
     gameLevel gm;
@@ -39,14 +42,13 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
     Stack<Button> disabledButtons;
     DatabaseReference qnumref;
     DatabaseReference qinforef;
+    SharedPrefManager sharedPrefManager;
+    private String mEmail;
+    Context mContext = this;
     boolean isCorrect;
     ImageView img;
-    //int numQuestions;
-    //String word = "";
-    //String hint = "";
-    String imageUrl = "";
-    QNum qnum = new QNum();
-    //QuestionInfo qinfo = new QuestionInfo();
+    int userLevel;
+
     ArrayList<QuestionInfo> questions = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,9 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
         rq = -1;
         database = FirebaseDatabase.getInstance().getReference();
         storage = FirebaseStorage.getInstance();
-        //Random r = new Random();
-        //DatabaseReference countRef = database.child("count");
-        //int randomQuestion = r.nextInt(numQuestions - 1) + 1;
-        qnumref = database.child("Count");
+        sharedPrefManager = new SharedPrefManager(mContext);
+        mEmail = sharedPrefManager.getUserEmail().replace(".", ",");
+        qnumref = database.child("users").child(mEmail);
         isCorrect = false;
         qinforef = database.child("Questions");
         rq = getIntent().getIntExtra("stage", 1) - 1;
@@ -81,11 +82,25 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     QuestionInfo q = ds.getValue(QuestionInfo.class);
-                    Log.d("Level", q.getWord());
                     questions.add(q);
                 }
-
                 showQuestion();
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        qnumref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    User q = dataSnapshot.getValue(User.class);
+                    userLevel = q.getLevel();
+
             }
 
             @Override
@@ -93,7 +108,6 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
 
             }
         });
-        // [END post_value_event_listener]
 
     }
 
@@ -126,6 +140,10 @@ public class Level extends AppCompatActivity implements MyAlertDialogFragment2.Q
         if(gm.makeGuess())
         {
             isCorrect = true;
+            if((userLevel <= (rq + 1)) && (rq < 8))
+            {
+                qnumref.child("level").setValue(rq + 2);
+            }
             if(soundEnabled)
             {
                 mpC.start();

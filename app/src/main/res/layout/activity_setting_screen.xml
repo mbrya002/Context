@@ -54,6 +54,10 @@ tools:context="apps.matts.contextlearning.SettingScreen">
 
     <Button
         android:id="@+id/resetProgressbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset Progress"
+        android:onClick="resetClick"/>
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -70,6 +74,10 @@ tools:context="apps.matts.contextlearning.SettingScreen">
 
     <Button
         android:id="@+id/logoffbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:onClick="logoutClick"/>
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
